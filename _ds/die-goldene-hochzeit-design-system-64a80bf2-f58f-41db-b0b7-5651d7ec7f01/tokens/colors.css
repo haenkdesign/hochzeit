@@ -1,0 +1,45 @@
+/* ==========================================================================
+   Die Goldene HochZeit — Color tokens
+   ========================================================================== */
+
+:root {
+  /* ---- Base palette (from brand note) ------------------------------------ */
+  --hz-pink:            #F9CEE9; /* Basisfarbe — süß, aber nicht brav          */
+  --hz-red:             #EB3915; /* Kontrast- & Signalfarbe — knallig, frech   */
+  --hz-gold:            #AA9B74; /* Hero-Ton für Typo & Jubiläums-Elemente     */
+  --hz-gold-highlight:  #D4CDA3; /* Glanzlicht auf den 3D-Lettern              */
+  --hz-gold-shadow:     #45302B; /* Tiefe / Kontur der geprägten Buchstaben    */
+
+  /* ---- Extended neutrals (derived, harmonised in oklch) ------------------ */
+  --hz-ink:             #2B1D18; /* near-black brown for body text            */
+  --hz-cream:           #FBF3E7; /* warm off-white paper                      */
+  --hz-pink-soft:       #FDE8F4; /* tinted pink surface / whitespace          */
+  --hz-pink-deep:       #F2A9D3; /* pressed / hover pink                      */
+  --hz-red-deep:        #C42C0E; /* pressed red                               */
+  --hz-gold-deep:       #8C7E5B; /* pressed gold                              */
+  --hz-line:            #E7C9DC; /* hairline on pink surfaces                 */
+
+  /* ---- Semantic aliases -------------------------------------------------- */
+  --surface-base:       var(--hz-pink);
+  --surface-paper:      var(--hz-cream);
+  --surface-card:       #FFFFFF;
+  --surface-soft:       var(--hz-pink-soft);
+  --surface-invert:     var(--hz-gold-shadow);
+
+  --text-body:          var(--hz-ink);
+  --text-muted:         #7A5E56;
+  --text-on-red:        var(--hz-cream);
+  --text-on-dark:       var(--hz-cream);
+  --text-hero:          var(--hz-gold);
+
+  --accent:             var(--hz-red);
+  --accent-hover:       var(--hz-red-deep);
+  --hero:               var(--hz-gold);
+
+  --border-hairline:    var(--hz-line);
+  --focus-ring:         var(--hz-red);
+
+  /* status — festival keeps it minimal & warm */
+  --ok:                 #1F8A5B;
+  --warn:               var(--hz-red);
+}

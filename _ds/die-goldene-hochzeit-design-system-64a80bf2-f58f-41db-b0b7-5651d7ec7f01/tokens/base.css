@@ -1,0 +1,66 @@
+/* ==========================================================================
+   Die Goldene HochZeit — Base element defaults
+   Light-touch resets + brand typographic defaults. Not a heavy reset.
+   ========================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-text);
+  font-size: var(--fs-body);
+  line-height: var(--lh-normal);
+  color: var(--text-body);
+  background: var(--surface-base);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: var(--fw-black);
+  line-height: var(--lh-snug);
+  margin: 0 0 0.4em;
+  color: var(--text-body);
+}
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); }
+
+p { margin: 0 0 1em; text-wrap: pretty; }
+
+a {
+  color: var(--hz-red);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 2px;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+a:hover { color: var(--hz-red-deep); }
+
+/* Eyebrow / label utility */
+.hz-eyebrow {
+  font-family: var(--font-text);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-caption);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--hz-red);
+}
+
+/* Handwritten accent utility (the "26" note) */
+.hz-script {
+  font-family: var(--font-script);
+  font-weight: var(--fw-bold);
+  line-height: 1;
+}
+
+/* Embossed gold hero lettering utility */
+.hz-emboss {
+  font-family: var(--font-display);
+  font-weight: var(--fw-black);
+  color: var(--hz-gold-highlight);
+  text-shadow: var(--emboss-gold);
+  letter-spacing: var(--tracking-hero);
+}
+
+::selection { background: var(--hz-red); color: var(--hz-cream); }
