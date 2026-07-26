@@ -212,95 +212,6 @@
     <p style="margin:16px 0 0;font-size:.82rem;line-height:1.4;color:var(--hz-ink);opacity:.65">Hängt auch beim Kiosk aus! Alle Spiel-, Spaß- und Essenszeiten sind ohne Gewähr und können abhängig von Wetter, Stimmung oder sonstigen Naturereignissen auch ein bisschen verschoben werden.</p>
   </section>
 
-  <!-- ============ SCHICHTPLAN ============ -->
-  <section id="schichtplan" style="background:var(--hz-cream);padding:34px 22px 40px">
-    <div style="font-family:var(--font-text);font-weight:600;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--hz-red)">Mitarbeit</div>
-    <h2 style="font-family:var(--font-display);font-weight:900;font-size:2.4rem;line-height:.92;margin:6px 0 6px;text-transform:uppercase">Schicht-<br>plan</h2>
-    <p style="margin:0 0 16px;font-size:.98rem;line-height:1.5;color:var(--hz-ink);opacity:.85">Alles läuft nur, weil ihr mitanpackt — danke! Such dir deinen Einsatzort und schau, wann du dran bist. Alle Details gibt's bei der Schichteinweisung Freitag nach dem Essen gegen 18.45 Uhr.</p>
-
-    <div style="position:relative;margin-bottom:16px">
-      <span style="position:absolute;left:14px;top:50%;transform:translateY(-50%);display:flex;color:var(--hz-red);pointer-events:none">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.5" y2="16.5"></line></svg>
-      </span>
-      <input value="{{ schichtQuery }}" onChange="{{ onSchichtQuery }}" placeholder="Name suchen — wann bin ich dran?" style="width:100%;box-sizing:border-box;font-family:var(--font-text);font-weight:600;font-size:.95rem;color:var(--hz-ink);background:var(--hz-cream);border:2px solid var(--hz-ink);border-radius:999px;padding:12px 42px 12px 42px;outline:none" />
-      <sc-if value="{{ searching }}" hint-placeholder-val="{{ false }}">
-        <button onClick="{{ onClearSearch }}" aria-label="Suche löschen" style="position:absolute;right:9px;top:50%;transform:translateY(-50%);border:none;background:var(--hz-ink);color:var(--hz-cream);width:26px;height:26px;border-radius:50%;font-family:var(--font-display);font-weight:900;font-size:1rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center">×</button>
-      </sc-if>
-    </div>
-
-    <sc-if value="{{ searching }}" hint-placeholder-val="{{ false }}">
-      <div>
-        <sc-if value="{{ searchInfo }}" hint-placeholder-val="{{ false }}">
-          <div style="font-family:var(--font-text);font-weight:700;font-size:.72rem;letter-spacing:.02em;color:var(--hz-red);margin-bottom:12px">{{ searchInfo }}</div>
-        </sc-if>
-        <div style="display:flex;flex-direction:column;gap:10px">
-          <sc-for list="{{ searchResults }}" as="r" hint-placeholder-count="2">
-            <div style="{{ r.cardStyle }}">
-              <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap">
-                <span style="font-family:var(--font-display);font-weight:900;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--hz-red);background:var(--hz-pink);border-radius:999px;padding:4px 11px">{{ r.ort }}</span>
-                <span style="font-family:var(--font-display);font-weight:900;font-size:.82rem;color:var(--hz-cream);background:var(--hz-ink);border-radius:999px;padding:4px 11px;white-space:nowrap">{{ r.time }}</span>
-                <sc-if value="{{ r.label }}" hint-placeholder-val="{{ false }}">
-                  <span style="font-family:var(--font-text);font-weight:700;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--hz-ink);opacity:.6">{{ r.label }}</span>
-                </sc-if>
-              </div>
-              <div style="display:flex;flex-wrap:wrap;gap:6px">
-                <sc-for list="{{ r.chips }}" as="c" hint-placeholder-count="2">
-                  <span style="{{ c.style }}">{{ c.name }}</span>
-                </sc-for>
-              </div>
-            </div>
-          </sc-for>
-        </div>
-        <sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}">
-          <div style="text-align:center;padding:26px 10px">
-            <div style="font-family:var(--font-display);font-weight:900;font-size:1.15rem;color:var(--hz-ink);margin-bottom:4px">Nichts gefunden</div>
-            <div style="font-family:var(--font-text);font-size:.9rem;color:var(--hz-ink);opacity:.65">Probier's mal mit Vor- oder Spitznamen.</div>
-          </div>
-        </sc-if>
-      </div>
-    </sc-if>
-
-    <sc-if value="{{ notSearching }}" hint-placeholder-val="{{ true }}">
-      <div>
-    <div style="display:flex;gap:8px;margin-bottom:20px">
-      <sc-for list="{{ schichtTabs }}" as="t" hint-placeholder-count="4">
-        <button onClick="{{ t.onClick }}" style="{{ t.style }}">
-          <span style="font-family:var(--font-display);font-weight:900;font-size:.92rem;line-height:1.05">{{ t.label }}</span>
-        </button>
-      </sc-for>
-    </div>
-
-    <div ref="{{ scRef }}" onTouchStart="{{ onScTouchStart }}" onTouchEnd="{{ onScTouchEnd }}" style="touch-action:pan-y">
-      <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:14px">
-        <div style="font-family:var(--font-display);font-weight:900;font-size:1.3rem;line-height:1;color:var(--hz-ink)">{{ ort.name }}</div>
-        <div style="font-family:var(--font-text);font-weight:700;font-size:.72rem;letter-spacing:.02em;color:var(--hz-red);white-space:nowrap">{{ ort.count }}</div>
-      </div>
-      <sc-if value="{{ ort.note }}" hint-placeholder-val="{{ false }}">
-        <p style="margin:-6px 0 14px;font-size:.86rem;line-height:1.45;color:var(--hz-ink);opacity:.7">{{ ort.note }}</p>
-      </sc-if>
-      <div style="display:flex;flex-direction:column;gap:10px">
-        <sc-for list="{{ ort.shifts }}" as="s" hint-placeholder-count="5">
-          <div style="{{ s.cardStyle }}">
-            <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
-              <span style="font-family:var(--font-display);font-weight:900;font-size:.82rem;color:var(--hz-cream);background:var(--hz-red);border-radius:999px;padding:4px 11px;white-space:nowrap">{{ s.time }}</span>
-              <sc-if value="{{ s.label }}" hint-placeholder-val="{{ false }}">
-                <span style="font-family:var(--font-text);font-weight:700;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--hz-ink);opacity:.6">{{ s.label }}</span>
-              </sc-if>
-            </div>
-            <div style="display:flex;flex-wrap:wrap;gap:6px">
-              <sc-for list="{{ s.people }}" as="p" hint-placeholder-count="3">
-                <span style="font-family:var(--font-text);font-weight:600;font-size:.9rem;line-height:1;color:var(--hz-ink);background:var(--hz-pink);border-radius:999px;padding:7px 12px">{{ p }}</span>
-              </sc-for>
-            </div>
-          </div>
-        </sc-for>
-      </div>
-      </div>
-      </div>
-    </sc-if>
-    <p style="margin:16px 0 0;font-size:.82rem;line-height:1.4;color:var(--hz-ink);opacity:.65">Tausch oder Frage? Meldet euch beim jeweiligen Team-Lead — und tragt Tausche bitte auch am Aushang beim Kiosk ein.</p>
-  </section>
-
   <!-- ============ SPIELE ============ -->
   <section id="spiele" style="background:var(--hz-pink);padding:34px 22px 38px">
     <div style="font-family:var(--font-text);font-weight:600;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--hz-red)">Olympiade &amp; Challenges</div>
@@ -462,7 +373,7 @@ class Component extends DCLogic {
     this._setupSpy();
   }
   _setupSpy(){
-    const ids = ["start", "programm", "schichtplan", "spiele", "awareness", "mitbringen", "anreise", "siebdruck", "faq"];
+    const ids = ["start", "programm", "spiele", "awareness", "mitbringen", "anreise", "siebdruck", "faq"];
     this._io = new IntersectionObserver((entries) => {
       entries.forEach((e) => { if (e.isIntersecting) this.setState({ active: e.target.id }); });
     }, { rootMargin: "-45% 0px -50% 0px", threshold: 0 });
@@ -867,7 +778,6 @@ class Component extends DCLogic {
     const navPillOn = { ...navPill, background: "var(--hz-red)", color: "var(--hz-cream)", borderColor: "var(--hz-red)" };
     const navItems = [
       { label: "Programm", href: "#programm", id: "programm" },
-      { label: "Schichtplan", href: "#schichtplan", id: "schichtplan" },
       { label: "Spiele", href: "#spiele", id: "spiele" },
       { label: "Awareness", href: "#awareness", id: "awareness" },
       { label: "Mitbringen", href: "#mitbringen", id: "mitbringen" },
